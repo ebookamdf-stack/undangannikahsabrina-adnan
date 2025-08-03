@@ -3,209 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Undangan Pernikahan Romantis</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
+    <title>Undangan Pernikahan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Gaya Umum */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+        
         body {
-            font-family: 'Lora', serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f7f3e9; /* Warna latar belakang krem lembut */
-            color: #5d5d5d; /* Warna teks abu-abu tua */
-            line-height: 1.6;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9f7f7;
+            color: #333;
+            overflow-x: hidden;
         }
-
-        h1, h2, h3 {
+        
+        .playfair {
             font-family: 'Playfair Display', serif;
-            color: #4a4a4a;
         }
-
-        h1 {
-            font-size: 3.5rem;
-            margin-bottom: 0.5rem;
+        
+        .photo-frame {
+            border: 12px solid white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transform: rotate(-2deg);
+            transition: all 0.5s ease;
         }
-
-        h2 {
-            font-size: 2.2rem;
-            margin-top: 0;
-            margin-bottom: 2rem;
-            color: #7d7d7d;
+        
+        .photo-frame:hover {
+            transform: rotate(1deg);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
         }
-
-        h3 {
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
+        
+        .open-btn {
+            background: rgba(255,255,255,0.25);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.5);
+            transition: all 0.3s ease;
         }
-
-        section {
-            padding: 4rem 1rem;
-            text-align: center;
-            max-width: 960px;
-            margin: 0 auto;
+        
+        .open-btn:hover {
+            background: rgba(255,255,255,0.4);
+            transform: translateY(-3px);
         }
-
-        /* Header (Hero Section) */
-        .hero {
-            background: url('https://via.placeholder.com/1920x1080.png?text=Gambar+Romantis') no-repeat center center/cover;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            position: relative;
+        
+        .timeline-bar {
+            height: 3px;
+            background: linear-gradient(90deg, #f3d2c9, #d8b4a0, #d77a61);
+        }
+        
+        .map-container {
+            height: 300px;
+            background: #eee;
+            border-radius: 12px;
             overflow: hidden;
         }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.4); /* Overlay gelap */
+        
+        .floating-heart {
+            animation: float 6s ease-in-out infinite;
         }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
         }
-
-        .hero-content h1, .hero-content h2, .hero-content p {
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        
+        .countdown-box {
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(5px);
         }
-
-        /* Bagian Cerita dan Detail */
-        .story, .details {
-            background-color: white;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-            margin-top: 2rem;
-            border-radius: 10px;
+        
+        .modal {
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
         }
-
-        .story-container, .details-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-            justify-content: center;
-        }
-
-        .story-item, .detail-item {
-            flex: 1 1 45%;
-            padding: 1.5rem;
-            border-left: 2px solid #e0d8c2;
-            text-align: left;
-        }
-
-        .story-item p, .detail-item p {
-            color: #7d7d7d;
-        }
-
-        .map-link {
-            color: #b38b5d; /* Warna emas */
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
-
-        .map-link:hover {
-            color: #9c7a52;
-        }
-
-        /* Galeri Foto */
-        .gallery {
-            background-color: #f7f3e9;
-        }
-
-        .gallery-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .gallery-container img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .gallery-container img:hover {
-            transform: scale(1.05);
-        }
-
-        /* Footer */
-        footer {
-            background-color: #4a4a4a;
-            color: #e0d8c2;
-            text-align: center;
-            padding: 2rem;
+        
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
         }
     </style>
 </head>
-<body>
-
-    <header class="hero">
-        <div class="hero-content">
-            <h1>Nama & Nama</h1>
-            <h2>Dengan cinta, kami mengundang Anda untuk merayakan hari istimewa kami.</h2>
-            <p>Sabtu, 21 Desember 2024</p>
+<body class="relative">
+    <!-- Cover Page -->
+    <div id="cover" class="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-pink-50 to-purple-50 p-6 relative overflow-hidden">
+        <!-- Floating Decorative Elements -->
+        <div class="absolute top-20 left-20 w-16 h-16 rounded-full bg-pink-200 opacity-20"></div>
+        <div class="absolute bottom-32 right-24 w-24 h-24 rounded-full bg-purple-200 opacity-20"></div>
+        
+        <!-- Main Content -->
+        <div class="z-10 text-center">
+            <h1 class="playfair text-4xl md:text-6xl font-bold text-pink-800 mb-6">Undangan Pernikahan</h1>
+            
+            <!-- Photo Frame -->
+            <div class="photo-frame mx-auto mb-12 w-64 h-64 md:w-80 md:h-80 relative">
+                <img src="https://placehold.co/800x800" alt="Pasangan pengantin berdiri di taman bunga dengan latar sunset romantis" class="w-full h-full object-cover">
+                <div class="absolute inset-0 border-4 border-opacity-30 border-white"></div>
+            </div>
+            
+            <h2 class="playfair text-3xl text-gray-700 mb-4">Sarah &amp; Dimas</h2>
+            <p class="text-lg text-gray-600 mb-8">Kami Berbahagia Mengundang Anda<br>Pada Hari Pernikahan Kami</p>
+            
+            <!-- Open Invitation Button -->
+            <button id="openBtn" class="open-btn px-8 py-3 rounded-full text-white font-medium shadow-lg flex items-center mx-auto">
+                <span>Buka Undangan</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+            </button>
         </div>
-    </header>
-
-    <main>
-        <section class="story">
-            <h2>Kisah Cinta Kami</h2>
-            <div class="story-container">
-                <div class="story-item">
-                    <h3>Awal Bertemu</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        
+        <!-- Floating Hearts -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 floating-heart">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-pink-400" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
+            </svg>
+        </div>
+    </div>
+    
+    <!-- Invitation Content -->
+    <div id="content" class="hidden py-16 px-6 max-w-4xl mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <p class="text-pink-600 mb-4">Kami Mengundang Anda</p>
+            <h1 class="playfair text-4xl font-bold text-gray-800 mb-4">Sarah &amp; Dimas</h1>
+            <div class="timeline-bar w-24 mx-auto my-6"></div>
+            <p class="text-lg text-gray-600">Akan melangsungkan pernikahan pada:</p>
+        </div>
+        
+        <!-- Wedding Details -->
+        <div class="grid md:grid-cols-2 gap-8 mb-16">
+            <!-- Akad Nikah -->
+            <div class="bg-white p-8 rounded-xl shadow-md text-center">
+                <div class="mb-5">
+                    <h3 class="playfair text-2xl font-bold text-pink-700 mb-2">Akad Nikah</h3>
+                    <p class="text-gray-600">Sabtu, 28 Oktober 2023</p>
                 </div>
-                <div class="story-item">
-                    <h3>Bersama Selamanya</h3>
-                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="details">
-            <h2>Informasi Acara</h2>
-            <div class="details-container">
-                <div class="detail-item">
-                    <h3>Akad Nikah</h3>
-                    <p>Pukul 09.00 WIB</p>
-                    <p>Masjid Raya Jakarta</p>
-                    <p><a href="#" class="map-link">Lihat di Google Maps</a></p>
-                </div>
-                <div class="detail-item">
-                    <h3>Resepsi</h3>
-                    <p>Pukul 11.00 WIB</p>
-                    <p>Gedung Serbaguna Jakarta</p>
-                    <p><a href="#" class="map-link">Lihat di Google Maps</a></p>
-                </div>
-            </div>
-        </section>
-
-        <section class="gallery">
-            <h2>Galeri Foto</h2>
-            <div class="gallery-container">
-                <img src="https://via.placeholder.com/400x300.png?text=Foto+1" alt="Foto Pernikahan 1">
-                <img src="https://via.placeholder.com/400x300.png?text=Foto+2" alt="Foto Pernikahan 2">
-                <img src="https://via.placeholder.com/400x300.png?text=Foto+3" alt="Foto Pernikahan 3">
-            </div>
-        </section>
-
-    </main>
-
-    <footer>
-        <p>Dengan hormat, keluarga mempelai.</p>
-        <p>&copy; 2024 Nama & Nama. Semua Hak Cipta Dilindungi.</p>
-    </footer>
-
-</body>
-</html>
+                <div class="mb-5 flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l
